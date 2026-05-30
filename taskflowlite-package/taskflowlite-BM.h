@@ -20,8 +20,7 @@ inline void taskflowlite_empty_function() {
 }
 
 void TASKFLOWLITE_32PARALLEL_8thds_BM(benchmark::State& state) {
-    tfl::ResumeNever handler;
-    tfl::Executor executor(handler, 8);
+    tfl::Executor executor(8);
     tfl::Flow flow;
 
     const int size = 32;
@@ -37,8 +36,7 @@ void TASKFLOWLITE_32PARALLEL_8thds_BM(benchmark::State& state) {
 
 
 void TASKFLOWLITE_32SERIAL_1thds_BM(benchmark::State& state) {
-    tfl::ResumeNever handler;
-    tfl::Executor executor(handler, 1);
+    tfl::Executor executor(1);
     tfl::Flow flow;
 
     const int size = 32;
@@ -57,8 +55,7 @@ void TASKFLOWLITE_32SERIAL_1thds_BM(benchmark::State& state) {
 
 
 void TASKFLOWLITE_SIMPLE_2thds_BM(benchmark::State& state) {
-    tfl::ResumeNever handler;
-    tfl::Executor executor(handler, 2);
+    tfl::Executor executor(2);
     tfl::Flow flow;
 
     auto a = flow.emplace(taskflowlite_empty_function);
@@ -84,8 +81,7 @@ void TASKFLOWLITE_8x8FC_8thds_BM(benchmark::State& state) {
     const int layer = 8;
     const int nodePerLayer = 8;
 
-    tfl::ResumeNever handler;
-    tfl::Executor executor(handler, nodePerLayer);
+    tfl::Executor executor(nodePerLayer);
     tfl::Flow flow;
 
     std::vector<tfl::Task> beforeLayer;

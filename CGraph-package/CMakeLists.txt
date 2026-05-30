@@ -10,13 +10,14 @@ FetchContent_Declare(
     GIT_REPOSITORY https://github.com/ChunelFeng/CGraph.git
     GIT_TAG main
     GIT_SHALLOW TRUE
-    GIT_CONFIG http.proxy= https.proxy=
     UPDATE_DISCONNECTED TRUE
 )
 FetchContent_MakeAvailable(CGraph)
 
 add_library(tppbm_cgraph_package INTERFACE)
 add_library(tppbm::cgraph ALIAS tppbm_cgraph_package)
+
+target_compile_definitions(CGraph PRIVATE _CGRAPH_LITE_MODE_ENABLE_)
 
 target_include_directories(tppbm_cgraph_package
     INTERFACE

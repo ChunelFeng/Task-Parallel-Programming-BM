@@ -20,6 +20,7 @@ Each framework should implement the same topology and roughly the same task body
 The project currently includes benchmark implementations for:
 
 - [CGraph](https://github.com/ChunelFeng/CGraph)
+- [CGraph-lite](https://github.com/ChunelFeng/CGraph-lite)
 - [Taskflow](https://github.com/taskflow/taskflow)
 - [TaskflowLite](https://github.com/wicyn/taskflowlite)
 - [oneTBB](https://github.com/oneapi-src/oneTBB)

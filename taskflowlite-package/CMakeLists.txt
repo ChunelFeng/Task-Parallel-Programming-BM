@@ -11,7 +11,6 @@ FetchContent_Declare(
     GIT_TAG main
     GIT_SHALLOW TRUE
     GIT_PROGRESS TRUE
-    GIT_CONFIG http.proxy= https.proxy=
     UPDATE_DISCONNECTED TRUE
 )
 FetchContent_MakeAvailable(taskflowlite)
