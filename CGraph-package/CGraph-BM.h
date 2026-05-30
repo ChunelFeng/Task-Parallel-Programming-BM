@@ -27,7 +27,8 @@ void CGRAPH_32PARALLEL_8thds_BM(benchmark::State& state) {
     config.max_task_steal_range_ = 7;
     config.max_thread_size_ = 8;
     config.primary_thread_empty_interval_ = 0;
-    config.primary_thread_busy_epoch_ = 500000;
+    config.primary_thread_busy_epoch_ = 100;
+    config.pipeline_wait_busy_epoch_ = 100;
     pipeline->setUniqueThreadPoolConfig(config);
     for (auto& i : arr) {
         pipeline->registerGElement<EmptyGNode>(&i);
@@ -73,7 +74,8 @@ void CGRAPH_SIMPLE_2thds_BM(benchmark::State& state) {
     config.max_task_steal_range_ = 2;
     config.max_thread_size_ = 2;
     config.primary_thread_empty_interval_ = 0;
-    config.primary_thread_busy_epoch_ = 500000;
+    config.primary_thread_busy_epoch_ = 10;
+    config.pipeline_wait_busy_epoch_ = 100;
     pipeline->setUniqueThreadPoolConfig(config);
     pipeline->registerGElement<EmptyGNode>(&a);
     pipeline->registerGElement<EmptyGNode>(&b1, {a});
@@ -102,8 +104,9 @@ void CGRAPH_8x8FC_8thds_BM(benchmark::State& state) {
     config.default_thread_size_ = nodePerLayer;
     config.max_thread_size_ = nodePerLayer;
     config.max_task_steal_range_ = nodePerLayer - 1;
-    config.primary_thread_busy_epoch_ = 500000;
-    config.primary_thread_empty_interval_ = 0;
+    config.primary_thread_busy_epoch_ = 100;
+    config.primary_thread_empty_interval_ = 1;
+    config.deliver_running_primary_thread_enable_ = true;
     pipeline->setUniqueThreadPoolConfig(config);
 
     GElementPtrSet curLayer {};

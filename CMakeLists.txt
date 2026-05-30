@@ -7,6 +7,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 add_subdirectory(CGraph-package)
+add_subdirectory(CGraph-lite-package)
 add_subdirectory(taskflow-package)
 add_subdirectory(taskflowlite-package)
 add_subdirectory(oneTBB-package)
@@ -22,6 +23,7 @@ add_executable(${PROJECT_NAME}
 target_link_libraries(${PROJECT_NAME}
     PRIVATE
     tppbm::cgraph
+    tppbm::cgraphlite
     tppbm::taskflow
     tppbm::taskflowlite
     tppbm::onetbb
