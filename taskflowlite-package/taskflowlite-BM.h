@@ -1,4 +1,4 @@
-
+﻿
 #ifndef TASKPARALLELPROGRAMMINGBM_TASKFLOWLITE_BM_H
 #define TASKPARALLELPROGRAMMINGBM_TASKFLOWLITE_BM_H
 
@@ -30,7 +30,7 @@ void TASKFLOWLITE_32PARALLEL_8thds_BM(benchmark::State& state) {
     }
 
     for (auto _ : state) {
-        executor.async(flow).wait();
+        executor.corun(flow);
     }
 }
 
@@ -72,7 +72,7 @@ void TASKFLOWLITE_SIMPLE_2thds_BM(benchmark::State& state) {
     c2.precede(d);
 
     for (auto _ : state) {
-        executor.async(flow).wait();
+        executor.corun(flow);
     }
 }
 
@@ -103,7 +103,7 @@ void TASKFLOWLITE_8x8FC_8thds_BM(benchmark::State& state) {
     }
 
     for (auto _ : state) {
-        executor.async(flow).wait();
+        executor.corun(flow);
     }
 }
 

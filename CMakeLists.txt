@@ -1,10 +1,6 @@
-cmake_minimum_required(VERSION 3.25)
+﻿cmake_minimum_required(VERSION 3.25)
 
 project(TaskParallelProgrammingBM LANGUAGES CXX)
-
-set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_EXTENSIONS OFF)
 
 add_subdirectory(CGraph-package)
 add_subdirectory(CGraph-lite-package)
@@ -12,12 +8,15 @@ add_subdirectory(taskflow-package)
 add_subdirectory(taskflowlite-package)
 add_subdirectory(oneTBB-package)
 add_subdirectory(scheduling-package)
-
-find_package(benchmark REQUIRED)
-
+add_subdirectory(benchmark-package)
 
 add_executable(${PROJECT_NAME}
     main.cpp
+)
+
+target_compile_features(${PROJECT_NAME}
+    PRIVATE
+    cxx_std_20
 )
 
 target_link_libraries(${PROJECT_NAME}
@@ -28,5 +27,5 @@ target_link_libraries(${PROJECT_NAME}
     tppbm::taskflowlite
     tppbm::onetbb
     tppbm::scheduling
-    benchmark::benchmark
+    tppbm::benchmark
 )
