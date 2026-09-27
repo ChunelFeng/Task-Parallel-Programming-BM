@@ -48,6 +48,11 @@ void CGRAPH_32SERIAL_1thds_BM(benchmark::State& state) {
     GPipelinePtr pipeline = GPipelineFactory::create();
     const int size = 32;
     GElementPtr arr[size];
+    UThreadPoolConfig config;
+    config.default_thread_size_ = 1;
+    config.secondary_thread_size_ = 0;
+    config.max_thread_size_ = 1;
+    pipeline->setUniqueThreadPoolConfig(config);
 
     pipeline->registerGElement<EmptyGNode>(&arr[0]);
     for (int i = 1; i < size; i++) {
@@ -130,6 +135,5 @@ void CGRAPH_8x8FC_8thds_BM(benchmark::State& state) {
     pipeline->destroy();
     GPipelineFactory::remove(pipeline);
 }
-
 
 #endif //TASKPARALLELPROGRAMMINGBM_CGRAPH_BM_H
